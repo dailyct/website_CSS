@@ -1,0 +1,699 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>王孟帆 | 個人檔案與作品集</title>
+    <meta name="description" content="王孟帆的個人部落格，展示人工智慧、程式設計作品與多媒體創作。">
+    
+    <style>
+        /* =========================================
+           1. CSS 變數定義 (Design System)
+           仿鳴潮風格：深邃黑、科技灰、共鳴金/青
+           ========================================= */
+        :root {
+            /* 色彩系統 */
+            --bg-primary: #0a0a0a;       /* 深黑背景 */
+            --bg-secondary: #141414;     /* 次級背景 */
+            --bg-glass: rgba(10, 10, 10, 0.85); /* 玻璃擬態 */
+            
+            --text-primary: #ffffff;
+            --text-secondary: #a0a0a0;
+            
+            --accent-color: #e5c07b;     /* 鳴潮金/黃色調 */
+            --accent-glow: rgba(229, 192, 123, 0.3);
+            --border-color: #333333;
+
+            /* 字體系統 */
+            --font-main: 'Inter', 'Noto Sans TC', system-ui, -apple-system, sans-serif;
+            
+            /* 間距與尺寸 */
+            --spacing-sm: 8px;
+            --spacing-md: 16px;
+            --spacing-lg: 32px;
+            --spacing-xl: 64px;
+            --container-width: 1200px;
+            --header-height: 70px;
+            
+            /* 動畫 */
+            --transition-speed: 0.3s;
+        }
+
+        /* =========================================
+           2. CSS Reset & Base Styles
+           ========================================= */
+        *, *::before, *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: var(--font-main);
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+            overflow-x: hidden; /* 防止橫向滾動 */
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+            transition: color var(--transition-speed);
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        img, video, iframe {
+            max-width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        /* 實用類別：標記高亮 */
+        mark {
+            background-color: transparent;
+            color: var(--accent-color);
+            font-weight: bold;
+            text-shadow: 0 0 5px var(--accent-glow);
+        }
+
+        /* =========================================
+           3. Layout Components (Header & Nav)
+           ========================================= */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: var(--header-height);
+            background-color: var(--bg-glass);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .navbar-container {
+            max-width: var(--container-width);
+            margin: 0 auto;
+            height: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 var(--spacing-md);
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+            color: var(--text-primary);
+        }
+
+        .logo span {
+            color: var(--accent-color);
+        }
+
+        /* 桌面導航 */
+        .nav-links {
+            display: flex;
+            gap: var(--spacing-lg);
+        }
+
+        .nav-links a {
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--text-secondary);
+            position: relative;
+        }
+
+        .nav-links a:hover, .nav-links a.active {
+            color: var(--text-primary);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0%;
+            height: 2px;
+            background-color: var(--accent-color);
+            transition: width var(--transition-speed);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        /* 漢堡選單按鈕 (Mobile Only) */
+        .menu-toggle {
+            display: none;
+            cursor: pointer;
+            font-size: 1.5rem;
+        }
+
+        /* =========================================
+           4. Main Content Sections
+           ========================================= */
+        main {
+            margin-top: var(--header-height);
+        }
+
+        /* 通用區塊樣式 */
+        section {
+            padding: var(--spacing-xl) var(--spacing-md);
+            max-width: var(--container-width);
+            margin: 0 auto;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        /* 區塊標題 */
+        .section-title {
+            font-size: 2rem;
+            margin-bottom: var(--spacing-lg);
+            text-align: center;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+        }
+
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 60px;
+            height: 3px;
+            background-color: var(--accent-color);
+            margin: 10px auto 0;
+        }
+
+        /* --- Hero Section (首頁) --- */
+        #hero {
+            height: calc(100vh - var(--header-height));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            background-image: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.8)), url('https://images.unsplash.com/photo-1550751827-4bd374c3f58b?q=80&w=2070&auto=format&fit=crop'); 
+            background-size: cover;
+            background-position: center;
+            border-bottom: none;
+        }
+
+        .hero-content {
+            text-align: center;
+            z-index: 2;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        .hero-content h1 {
+            font-size: 3.5rem;
+            margin-bottom: var(--spacing-sm);
+            text-shadow: 0 0 20px rgba(0,0,0,0.8);
+        }
+
+        .hero-content p {
+            font-size: 1.2rem;
+            color: var(--text-secondary);
+            margin-bottom: var(--spacing-lg);
+        }
+
+        .btn-cta {
+            display: inline-block;
+            padding: 12px 30px;
+            background-color: transparent;
+            border: 1px solid var(--accent-color);
+            color: var(--accent-color);
+            font-weight: bold;
+            letter-spacing: 2px;
+            transition: all var(--transition-speed);
+        }
+
+        .btn-cta:hover {
+            background-color: var(--accent-color);
+            color: var(--bg-primary);
+            box-shadow: 0 0 15px var(--accent-glow);
+        }
+
+        /* --- About Section (關於我) --- */
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: var(--spacing-lg);
+            align-items: center;
+        }
+
+        .profile-card {
+            background: var(--bg-secondary);
+            padding: var(--spacing-md);
+            border: 1px solid var(--border-color);
+            text-align: center;
+        }
+
+        .profile-img {
+            width: 200px;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 50%;
+            margin: 0 auto var(--spacing-md);
+            border: 2px solid var(--accent-color);
+        }
+
+        .notice-box {
+            background: rgba(255, 255, 255, 0.05);
+            padding: var(--spacing-md);
+            margin-bottom: var(--spacing-md);
+            border-left: 3px solid var(--accent-color);
+            font-size: 0.9rem;
+        }
+
+        /* --- Experience & Skills (經歷與技能) --- */
+        .grid-2-cols {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: var(--spacing-lg);
+        }
+
+        /* 自定義表格樣式 */
+        .tech-table {
+            width: 100%;
+            border-collapse: collapse;
+            background: var(--bg-secondary);
+            margin-top: var(--spacing-md);
+        }
+
+        .tech-table th, .tech-table td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .tech-table th {
+            color: var(--accent-color);
+            text-transform: uppercase;
+            font-size: 0.85rem;
+        }
+
+        /* --- Portfolio Section (作品集) --- */
+        .portfolio-tabs {
+            display: flex;
+            justify-content: center;
+            gap: var(--spacing-md);
+            margin-bottom: var(--spacing-lg);
+        }
+
+        .tab-btn {
+            background: none;
+            border: none;
+            color: var(--text-secondary);
+            cursor: pointer;
+            padding: 8px 16px;
+            font-size: 1rem;
+            border: 1px solid transparent;
+        }
+
+        .tab-btn.active {
+            color: var(--accent-color);
+            border-color: var(--accent-color);
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: var(--spacing-lg);
+        }
+
+        .media-card {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            overflow: hidden;
+            transition: transform var(--transition-speed);
+        }
+
+        .media-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--accent-color);
+        }
+
+        .media-content {
+            padding: var(--spacing-md);
+        }
+
+        .media-content h3 {
+            font-size: 1.1rem;
+            margin-bottom: var(--spacing-sm);
+        }
+
+        /* 音訊播放器樣式優化 */
+        audio {
+            width: 100%;
+            filter: invert(0.9); /* 讓預設播放器變暗色系 */
+        }
+
+        /* --- Map & Contact (其他與聯絡) --- */
+        .map-container {
+            width: 100%;
+            height: 400px;
+            filter: grayscale(100%) invert(90%); /* 地圖黑白反轉風格 */
+            margin-top: var(--spacing-md);
+        }
+
+        .contact-footer {
+            background-color: var(--bg-secondary);
+            padding: var(--spacing-xl) 0;
+            text-align: center;
+            border-top: 1px solid var(--accent-color);
+        }
+
+        /* 互動元素詳情 */
+        details {
+            background: var(--bg-secondary);
+            padding: var(--spacing-md);
+            margin-top: var(--spacing-md);
+            border: 1px solid var(--border-color);
+            cursor: pointer;
+        }
+        
+        details summary {
+            color: var(--accent-color);
+            font-weight: bold;
+        }
+
+        /* =========================================
+           5. RWD Media Queries (Mobile First)
+           ========================================= */
+        @media (max-width: 768px) {
+            .nav-links {
+                position: fixed;
+                top: var(--header-height);
+                right: -100%;
+                width: 70%;
+                height: calc(100vh - var(--header-height));
+                background-color: var(--bg-primary);
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                transition: right var(--transition-speed);
+                border-left: 1px solid var(--border-color);
+            }
+
+            .nav-links.active {
+                right: 0;
+            }
+
+            .menu-toggle {
+                display: block;
+            }
+
+            .about-grid, .grid-2-cols {
+                grid-template-columns: 1fr;
+            }
+
+            .hero-content h1 {
+                font-size: 2.5rem;
+            }
+        }
+
+        /* =========================================
+           6. Animations
+           ========================================= */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .fade-in-section {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+            will-change: opacity, visibility;
+        }
+
+        .fade-in-section.is-visible {
+            opacity: 1;
+            transform: none;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="navbar-container">
+            <a href="#" class="logo">WANG<span>.MF</span></a>
+            <div class="menu-toggle" id="mobile-menu">☰</div>
+            <nav class="nav-links" id="nav-links">
+                <a href="#hero">首頁</a>
+                <a href="#about">關於我</a>
+                <a href="#portfolio">專案作品</a>
+                <a href="#others">更多資訊</a>
+                <a href="#contact">聯絡我</a>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section id="hero">
+            <div class="hero-content">
+                <h1>王孟帆</h1>
+                <p>人工智慧教育者 | Python 開發者 | 數位內容創作者</p>
+                <br>
+                <a href="#portfolio" class="btn-cta">查看作品集</a>
+            </div>
+        </section>
+
+        <article id="about" class="fade-in-section">
+            <h2 class="section-title">關於我</h2>
+            <div class="about-grid">
+                <div class="profile-card">
+                    <img src="https://placehold.co/300x300/1a1a1a/e5c07b?text=Morris" alt="王孟帆 Profile Picture" class="profile-img">
+                    <h3>王孟帆</h3>
+                    <p style="color: var(--accent-color); margin-top: 5px;">國立台北教育大學</p>
+                    <hr style="border-color: #333; margin: 15px 0;">
+                    <p>學生 / 教授</p>
+                </div>
+
+                <div class="profile-details">
+                    <div class="notice-box">
+                        <strong>NOTICE:</strong> 該個人圖片為本人委託繪師所繪，請勿任意轉載!!
+                    </div>
+
+                    <p>在此部落格中，將分享我在工作上及生活中的點滴。</p>
+                    <br>
+                    <p>我是一位大學教授，專注教授 <mark>人工智慧</mark> 和 <mark>Python 程式設計</mark>，並致力於 <mark>深度學習</mark> 與 <mark>生成式 AI</mark> 在教育及工程應用上的創新研究與應用。</p>
+                    <br>
+                    <p>此外，我也熱愛旅遊、音樂與閱讀，希望將藝術與科技結合，為教學與研究注入更多元的靈感與視野。</p>
+
+                    <div class="grid-2-cols" style="margin-top: 30px;">
+                        <div>
+                            <h3 style="color: var(--text-secondary);">經歷 (History)</h3>
+                            <table class="tech-table">
+                                <thead>
+                                    <tr>
+                                        <th>日期</th>
+                                        <th>經歷</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>2024-迄今</td>
+                                        <td>國立台北教育大學資訊科學系</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div>
+                            <h3 style="color: var(--text-secondary);">技能 (Skills)</h3>
+                            <table class="tech-table">
+                                <tr>
+                                    <td>C++</td>
+                                    <td>⭐⭐⭐⭐</td>
+                                </tr>
+                                <tr>
+                                    <td>Java</td>
+                                    <td>⭐⭐⭐</td>
+                                </tr>
+                                <tr>
+                                    <td>Python</td>
+                                    <td>⭐⭐⭐</td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </article>
+
+        <article id="portfolio" class="fade-in-section">
+            <h2 class="section-title">本學期專案與作品</h2>
+            
+            <p style="text-align: center; color: var(--text-secondary); margin-bottom: 20px;">
+                這裡展示了音訊、視訊及 AI 生成圖像的創作成果。
+            </p>
+
+            <div class="gallery-grid">
+                <div class="media-card">
+                    <div style="height: 150px; background: #222; display: flex; align-items: center; justify-content: center;">
+                        <span style="font-size: 3rem;">🎵</span>
+                    </div>
+                    <div class="media-content">
+                        <h3>Neon Dreams (Audio)</h3>
+                        <p style="font-size: 0.8rem; color: #888;">原創音樂作品</p>
+                        <br>
+                        <audio controls>
+                            <source src="assets/audio/Neon Dreams.mp3" type="audio/mpeg">
+                            您的瀏覽器不支援音訊元素。
+                        </audio>
+                    </div>
+                </div>
+
+                <div class="media-card">
+                    <video controls style="width:100%; height: 150px; object-fit: cover;">
+                        <source src="assets/video/Gemini_Academic_Powerhouse_Video.mp4" type="video/mp4">
+                    </video>
+                    <div class="media-content">
+                        <h3>Gemini Academic Video</h3>
+                        <p style="font-size: 0.8rem; color: #888;">學術推廣視訊</p>
+                    </div>
+                </div>
+
+                <div class="media-card">
+                    <video controls style="width:100%; height: 150px; object-fit: cover;">
+                        <source src="assets/video/Gemini_AI_Student_Offer_Video (1).mp4" type="video/mp4">
+                    </video>
+                    <div class="media-content">
+                        <h3>AI Student Offer</h3>
+                        <p style="font-size: 0.8rem; color: #888;">招生宣傳視訊</p>
+                    </div>
+                </div>
+
+                <div class="media-card">
+                    <img src="https://placehold.co/400x300/222/e5c07b?text=AI+Art+1" alt="Gemini生成圖片1" style="width:100%; height: 150px; object-fit: cover;">
+                    <div class="media-content">
+                        <h3>Gemini 生成藝術 #1</h3>
+                        <p style="font-size: 0.8rem; color: #888;">AI 圖像生成實驗</p>
+                    </div>
+                </div>
+
+                 <div class="media-card">
+                    <img src="https://placehold.co/400x300/222/5fecec?text=AI+Art+2" alt="Gemini生成圖片2" style="width:100%; height: 150px; object-fit: cover;">
+                    <div class="media-content">
+                        <h3>Gemini 生成藝術 #2</h3>
+                        <p style="font-size: 0.8rem; color: #888;">AI 圖像生成實驗</p>
+                    </div>
+                </div>
+            </div>
+        </article>
+
+        <section id="others" class="fade-in-section">
+            <h2 class="section-title">其他資訊</h2>
+            
+            <div class="grid-2-cols">
+                <div>
+                    <h3>文件預覽</h3>
+                    <p style="margin-bottom: 10px; color: var(--text-secondary);">點擊下方查看完整 PDF 文件</p>
+                    <div style="border: 1px solid var(--border-color); height: 300px; overflow: hidden; position: relative;">
+                         <iframe src="assets/pdf/twilight.pdf" style="width:100%; height:100%; border:none;">
+                            <p>您的瀏覽器不支援 PDF 預覽，請下載查看。</p>
+                        </iframe>
+                    </div>
+                </div>
+
+                <div>
+                    <h3>學習提示</h3>
+                    <details>
+                        <summary>點擊查看學習小秘訣</summary>
+                        <p style="padding-top: 10px;">建議攜帶筆記本與筆，方便隨時記錄課堂中的關鍵知識點與靈感。善用 AI 工具輔助學習，但不要完全依賴。</p>
+                    </details>
+
+                    <h3 style="margin-top: 20px;">位置資訊</h3>
+                    <div class="map-container">
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3615.2784024338266!2d121.54206247541927!3d25.02462437782254!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3442a908a8232611%3A0xeebfb2d71a5025c7!2z5ZyL56uL6Ie65YyX5pWZ6IKy5aSn5a24!5e0!3m2!1szh-TW!2stw!4v1731827435609!5m2!1szh-TW!2stw" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact" style="border-bottom: none;">
+            <div style="text-align: center;">
+                <h2>準備好開始合作了嗎？</h2>
+                <p style="color: var(--text-secondary); margin: 20px 0;">歡迎隨時透過電子郵件與我聯繫</p>
+                <a href="mailto:s111316020@stu.ntue.edu.tw" class="btn-cta">發送郵件</a>
+            </div>
+        </section>
+    </main>
+
+    <footer class="contact-footer">
+        <p>Email: s111316020@stu.ntue.edu.tw</p>
+        <p style="color: var(--text-secondary); font-size: 0.8rem; margin-top: 10px;">
+            &copy; 2025 Wang Meng-Fan. All Rights Reserved. <br>
+            <time datetime="2025-12-13">最後更新日期：2025年12月13日</time>
+        </p>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            
+            // 1. 漢堡選單互動邏輯
+            const menuToggle = document.getElementById('mobile-menu');
+            const navLinks = document.getElementById('nav-links');
+
+            if (menuToggle && navLinks) {
+                menuToggle.addEventListener('click', () => {
+                    navLinks.classList.toggle('active');
+                    // 切換圖示 (可選)
+                    menuToggle.textContent = navLinks.classList.contains('active') ? '✕' : '☰';
+                });
+
+                // 點擊連結後自動關閉選單 (優化手機體驗)
+                navLinks.querySelectorAll('a').forEach(link => {
+                    link.addEventListener('click', () => {
+                        navLinks.classList.remove('active');
+                        menuToggle.textContent = '☰';
+                    });
+                });
+            }
+
+            // 2. 滾動視差與淡入動畫 (Intersection Observer)
+            // 這是讓網站看起來像現代遊戲官網的關鍵技術
+            const observerOptions = {
+                threshold: 0.1, // 當元素出現 10% 時觸發
+                rootMargin: "0px 0px -50px 0px"
+            };
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('is-visible');
+                        // 觀察過後就不再重複觸發，若想重複觸發可移除下行
+                        observer.unobserve(entry.target); 
+                    }
+                });
+            }, observerOptions);
+
+            const fadeElements = document.querySelectorAll('.fade-in-section');
+            fadeElements.forEach(el => observer.observe(el));
+
+            // 3. 圖片右鍵保護 (保留原網站邏輯)
+            const protectImages = document.querySelectorAll('img');
+            protectImages.forEach(img => {
+                img.addEventListener('contextmenu', (e) => e.preventDefault());
+                img.addEventListener('dragstart', (e) => e.preventDefault());
+            });
+
+            console.log("System Initialized: Wang Meng-Fan Portfolio Loaded.");
+        });
+    </script>
+</body>
+</html>
