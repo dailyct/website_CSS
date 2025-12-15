@@ -6,9 +6,32 @@
     <title>王孟帆 | 個人檔案與作品集</title>
     <meta name="description" content="王孟帆的個人部落格，展示人工智慧、程式設計作品與多媒體創作。">
     
+    <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        dark: '#0a0a0a',
+                        secondary: '#141414',
+                        accent: '#e5c07b',
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'Noto Sans TC', 'sans-serif'],
+                        serif: ['Times New Roman', 'serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
     <style>
         /* =========================================
-           1. CSS 變數定義 (Design System)
+           2. CSS 變數定義 (Design System)
            仿鳴潮風格：深邃黑、科技灰、共鳴金/青
            ========================================= */
         :root {
@@ -40,7 +63,7 @@
         }
 
         /* =========================================
-           2. CSS Reset & Base Styles
+           3. CSS Reset & Base Styles
            ========================================= */
         *, *::before, *::after {
             box-sizing: border-box;
@@ -85,7 +108,7 @@
         }
 
         /* =========================================
-           3. Layout Components (Header & Nav)
+           4. Layout Components (Header & Nav)
            ========================================= */
         header {
             position: fixed;
@@ -161,14 +184,14 @@
         }
 
         /* =========================================
-           4. Main Content Sections
+           5. Main Content Sections
            ========================================= */
         main {
             margin-top: var(--header-height);
         }
 
         /* 通用區塊樣式 */
-        section {
+        section, article {
             padding: var(--spacing-xl) var(--spacing-md);
             max-width: var(--container-width);
             margin: 0 auto;
@@ -301,28 +324,6 @@
         }
 
         /* --- Portfolio Section (作品集) --- */
-        .portfolio-tabs {
-            display: flex;
-            justify-content: center;
-            gap: var(--spacing-md);
-            margin-bottom: var(--spacing-lg);
-        }
-
-        .tab-btn {
-            background: none;
-            border: none;
-            color: var(--text-secondary);
-            cursor: pointer;
-            padding: 8px 16px;
-            font-size: 1rem;
-            border: 1px solid transparent;
-        }
-
-        .tab-btn.active {
-            color: var(--accent-color);
-            border-color: var(--accent-color);
-        }
-
         .gallery-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -356,14 +357,7 @@
             filter: invert(0.9); /* 讓預設播放器變暗色系 */
         }
 
-        /* --- Map & Contact (其他與聯絡) --- */
-        .map-container {
-            width: 100%;
-            height: 400px;
-            filter: grayscale(100%) invert(90%); /* 地圖黑白反轉風格 */
-            margin-top: var(--spacing-md);
-        }
-
+        /* --- Contact (聯絡) --- */
         .contact-footer {
             background-color: var(--bg-secondary);
             padding: var(--spacing-xl) 0;
@@ -371,22 +365,8 @@
             border-top: 1px solid var(--accent-color);
         }
 
-        /* 互動元素詳情 */
-        details {
-            background: var(--bg-secondary);
-            padding: var(--spacing-md);
-            margin-top: var(--spacing-md);
-            border: 1px solid var(--border-color);
-            cursor: pointer;
-        }
-        
-        details summary {
-            color: var(--accent-color);
-            font-weight: bold;
-        }
-
         /* =========================================
-           5. RWD Media Queries (Mobile First)
+           6. RWD Media Queries (Mobile First)
            ========================================= */
         @media (max-width: 768px) {
             .nav-links {
@@ -421,7 +401,7 @@
         }
 
         /* =========================================
-           6. Animations
+           7. Animations
            ========================================= */
         @keyframes fadeInUp {
             from {
@@ -477,11 +457,11 @@
             <h2 class="section-title">關於我</h2>
             <div class="about-grid">
                 <div class="profile-card">
-                    <img src="assets/images/202505.png" alt="王孟帆 Profile Picture" class="profile-img">
+                    <img src="https://placehold.co/300x300/1a1a1a/e5c07b?text=Morris" alt="王孟帆 Profile Picture" class="profile-img">
                     <h3>王孟帆</h3>
                     <p style="color: var(--accent-color); margin-top: 5px;">國立台北教育大學</p>
                     <hr style="border-color: #333; margin: 15px 0;">
-                    <p>學生</p>
+                    <p>學生 / 教授</p>
                 </div>
 
                 <div class="profile-details">
@@ -489,11 +469,11 @@
                         <strong>NOTICE:</strong> 該個人圖片為本人委託繪師所繪，請勿任意轉載!!
                     </div>
 
-                    <p>在此部落格中，將分享我在多媒體課程上的點滴。</p>
+                    <p>在此部落格中，將分享我在工作上及生活中的點滴。</p>
                     <br>
-                    <p>我是一位大學學生，專注學習 <mark>人工智慧</mark> 和 <mark>Python 程式設計</mark>，興趣是 <mark>爵士鼓</mark>、<mark>旅遊</mark>、<mark>ACG</mark>。</p>
+                    <p>我是一位大學教授，專注教授 <mark>人工智慧</mark> 和 <mark>Python 程式設計</mark>，並致力於 <mark>深度學習</mark> 與 <mark>生成式 AI</mark> 在教育及工程應用上的創新研究與應用。</p>
                     <br>
-                    <p>非常熱愛ACG文化，希望在自己喜歡的ACG世界裡，找尋更多程式設計&AI的應用靈感。</p>
+                    <p>此外，我也熱愛旅遊、音樂與閱讀，希望將藝術與科技結合，為教學與研究注入更多元的靈感與視野。</p>
 
                     <div class="grid-2-cols" style="margin-top: 30px;">
                         <div>
@@ -569,12 +549,18 @@
                 </div>
 
                 <div class="media-card">
-                    <video controls style="width:100%; height: 150px; object-fit: cover;">
-                        <source src="assets/video/Gemini_AI_Student_Offer_Video (1).mp4" type="video/mp4">
-                    </video>
+                    <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; background: #000;">
+                        <iframe 
+                            src="https://www.youtube.com/embed/FzCN11texrc" 
+                            style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;" 
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                            allowfullscreen 
+                            title="Embedded YouTube Video">
+                        </iframe>
+                    </div>
                     <div class="media-content">
-                        <h3>AI Student Offer</h3>
-                        <p style="font-size: 0.8rem; color: #888;">宣傳視訊</p>
+                        <h3>專案展示影片</h3>
+                        <p style="font-size: 0.8rem; color: #888;">YouTube 影片展示</p>
                     </div>
                 </div>
 
@@ -597,32 +583,369 @@
         </article>
 
         <section id="others" class="fade-in-section">
-            <h2 class="section-title">其他資訊</h2>
+            <h2 class="section-title">更多資訊 - 互動作品</h2>
             
-            <div class="grid-2-cols">
-                <div>
-                    <h3>文件預覽</h3>
-                    <p style="margin-bottom: 10px; color: var(--text-secondary);">點擊下方查看完整 PDF 文件</p>
-                    <div style="border: 1px solid var(--border-color); height: 300px; overflow: hidden; position: relative;">
-                         <iframe src="assets/pdf/twilight.pdf" style="width:100%; height:100%; border:none;">
-                            <p>您的瀏覽器不支援 PDF 預覽，請下載查看。</p>
-                        </iframe>
-                    </div>
-                </div>
+            <div id="chess-root"></div>
 
-                <div>
-                    <h3>學習提示</h3>
-                    <details>
-                        <summary>點擊查看學習小秘訣</summary>
-                        <p style="padding-top: 10px;">建議攜帶筆記本與筆，方便隨時記錄課堂中的關鍵知識點與靈感。善用 AI 工具輔助學習，但不要完全依賴。</p>
-                    </details>
+            <script type="text/babel">
+                const { useState } = React;
 
-                    <h3 style="margin-top: 20px;">位置資訊</h3>
-                    <div class="map-container">
-                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3615.2784024338266!2d121.54206247541927!3d25.02462437782254!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3442a908a8232611%3A0xeebfb2d71a5025c7!2z5ZyL56uL6Ie65YyX5pWZ6IKy5aSn5a24!5e0!3m2!1szh-TW!2stw!4v1731827435609!5m2!1szh-TW!2stw" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+                // --- 1. 圖標組件 (SVG) ---
+                const RotateCcw = ({ size = 24, className = "" }) => (
+                    <svg xmlns="http://www.w3.org/2000/svg" width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 12"/><path d="M3 5v7h7"/></svg>
+                );
+                const Trophy = ({ size = 24, className = "" }) => (
+                    <svg xmlns="http://www.w3.org/2000/svg" width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}><path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6"/><path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18"/><path d="M4 22h16"/><path d="M10 14.66V17c0 .55-.47.98-.97 1.21C7.85 18.75 7 20.24 7 22"/><path d="M14 14.66V17c0 .55.47.98.97 1.21C16.15 18.75 17 20.24 17 22"/><path d="M18 2H6v7a6 6 0 0 0 12 0V2Z"/></svg>
+                );
+                const AlertTriangle = ({ size = 24, className = "" }) => (
+                    <svg xmlns="http://www.w3.org/2000/svg" width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z"/><path d="M12 9v4"/><path d="M12 17h.01"/></svg>
+                );
+
+                // --- 2. 遊戲常數與設定 ---
+                const INITIAL_BOARD_SETUP = [
+                    [
+                        { type: 'r', color: 'b', hasMoved: false }, { type: 'n', color: 'b', hasMoved: false }, { type: 'b', color: 'b', hasMoved: false }, { type: 'q', color: 'b', hasMoved: false },
+                        { type: 'k', color: 'b', hasMoved: false }, { type: 'b', color: 'b', hasMoved: false }, { type: 'n', color: 'b', hasMoved: false }, { type: 'r', color: 'b', hasMoved: false },
+                    ],
+                    Array(8).fill(null).map(() => ({ type: 'p', color: 'b', hasMoved: false })),
+                    Array(8).fill(null), Array(8).fill(null), Array(8).fill(null), Array(8).fill(null),
+                    Array(8).fill(null).map(() => ({ type: 'p', color: 'w', hasMoved: false })),
+                    [
+                        { type: 'r', color: 'w', hasMoved: false }, { type: 'n', color: 'w', hasMoved: false }, { type: 'b', color: 'w', hasMoved: false }, { type: 'q', color: 'w', hasMoved: false },
+                        { type: 'k', color: 'w', hasMoved: false }, { type: 'b', color: 'w', hasMoved: false }, { type: 'n', color: 'w', hasMoved: false }, { type: 'r', color: 'w', hasMoved: false },
+                    ],
+                ];
+
+                const PIECE_UNICODE = {
+                    w: { k: '♔', q: '♕', r: '♖', b: '♗', n: '♘', p: '♙' },
+                    b: { k: '♚', q: '♛', r: '♜', b: '♝', n: '♞', p: '♟' },
+                };
+
+                const ChessPieceIcon = ({ type, color }) => (
+                    <div className="w-full h-full flex items-center justify-center pointer-events-none">
+                        <span className="text-4xl md:text-5xl text-black font-serif leading-none drop-shadow-sm select-none">
+                            {PIECE_UNICODE[color][type] + '\uFE0E'}
+                        </span>
                     </div>
-                </div>
-            </div>
+                );
+
+                // --- 3. 遊戲主組件 ---
+                function ChessGame() {
+                    const [board, setBoard] = useState(JSON.parse(JSON.stringify(INITIAL_BOARD_SETUP)));
+                    const [turn, setTurn] = useState('w');
+                    const [selectedPos, setSelectedPos] = useState(null);
+                    const [possibleMoves, setPossibleMoves] = useState([]);
+                    const [lastMove, setLastMove] = useState(null);
+                    const [gameState, setGameState] = useState('playing');
+                    const [capturedPieces, setCapturedPieces] = useState({ w: [], b: [] });
+
+                    const isValidPos = (r, c) => r >= 0 && r < 8 && c >= 0 && c < 8;
+                    const copyBoard = (b) => b.map(row => row.map(p => p ? { ...p } : null));
+
+                    // --- 邏輯函數 ---
+                    const isSquareAttacked = (r, c, boardState, attackerColor) => {
+                        for (let i = 0; i < 8; i++) {
+                            for (let j = 0; j < 8; j++) {
+                                const piece = boardState[i][j];
+                                if (piece && piece.color === attackerColor) {
+                                    const moves = getPseudoLegalMoves({ r: i, c: j }, piece, boardState, null, false);
+                                    if (moves.some(m => m.to.r === r && m.to.c === c)) return true;
+                                }
+                            }
+                        }
+                        return false;
+                    };
+
+                    const getPseudoLegalMoves = (pos, piece, currentBoard, prevMove, checkForCastling = true) => {
+                        const moves = [];
+                        const { r, c } = pos;
+                        const direction = piece.color === 'w' ? -1 : 1;
+
+                        const addMove = (tr, tc, special) => {
+                            if (!isValidPos(tr, tc)) return;
+                            const target = currentBoard[tr][tc];
+                            if (target && target.color === piece.color) return;
+                            moves.push({ from: pos, to: { r: tr, c: tc }, ...special });
+                        };
+
+                        if (piece.type === 'p') {
+                            if (isValidPos(r + direction, c) && !currentBoard[r + direction][c]) {
+                                addMove(r + direction, c);
+                                const startRow = piece.color === 'w' ? 6 : 1;
+                                if (r === startRow && isValidPos(r + direction * 2, c) && !currentBoard[r + direction * 2][c]) {
+                                    addMove(r + direction * 2, c);
+                                }
+                            }
+                            [[r + direction, c - 1], [r + direction, c + 1]].forEach(([tr, tc]) => {
+                                if (isValidPos(tr, tc)) {
+                                    const target = currentBoard[tr][tc];
+                                    if (target && target.color !== piece.color) addMove(tr, tc);
+                                    if (!target && prevMove && prevMove.to.r === r && prevMove.to.c === tc) {
+                                        const movedPiece = currentBoard[r][tc];
+                                        if (movedPiece && movedPiece.type === 'p' && movedPiece.color !== piece.color && Math.abs(prevMove.from.r - prevMove.to.r) === 2) {
+                                            addMove(tr, tc, { isEnPassant: true });
+                                        }
+                                    }
+                                }
+                            });
+                        } else if (piece.type === 'n') {
+                            const offsets = [[-2, -1], [-2, 1], [-1, -2], [-1, 2], [1, -2], [1, 2], [2, -1], [2, 1]];
+                            offsets.forEach(([dr, dc]) => addMove(r + dr, c + dc));
+                        } else if (piece.type === 'k') {
+                            const offsets = [[-1, -1], [-1, 0], [-1, 1], [0, -1], [0, 1], [1, -1], [1, 0], [1, 1]];
+                            offsets.forEach(([dr, dc]) => addMove(r + dr, c + dc));
+                            if (checkForCastling && !piece.hasMoved && !isSquareAttacked(r, c, currentBoard, piece.color === 'w' ? 'b' : 'w')) {
+                                if (isValidPos(r, 7)) {
+                                    const rook = currentBoard[r][7];
+                                    if (rook && rook.type === 'r' && !rook.hasMoved && !currentBoard[r][5] && !currentBoard[r][6]) {
+                                        if (!isSquareAttacked(r, 5, currentBoard, piece.color === 'w' ? 'b' : 'w') && !isSquareAttacked(r, 6, currentBoard, piece.color === 'w' ? 'b' : 'w')) {
+                                            addMove(r, 6, { isCastling: 'kingside' });
+                                        }
+                                    }
+                                }
+                                if (isValidPos(r, 0)) {
+                                    const rook = currentBoard[r][0];
+                                    if (rook && rook.type === 'r' && !rook.hasMoved && !currentBoard[r][1] && !currentBoard[r][2] && !currentBoard[r][3]) {
+                                        if (!isSquareAttacked(r, 2, currentBoard, piece.color === 'w' ? 'b' : 'w') && !isSquareAttacked(r, 3, currentBoard, piece.color === 'w' ? 'b' : 'w')) {
+                                            addMove(r, 2, { isCastling: 'queenside' });
+                                        }
+                                    }
+                                }
+                            }
+                        } else {
+                            const directions = [];
+                            if (piece.type === 'b' || piece.type === 'q') directions.push([-1, -1], [-1, 1], [1, -1], [1, 1]);
+                            if (piece.type === 'r' || piece.type === 'q') directions.push([-1, 0], [1, 0], [0, -1], [0, 1]);
+                            for (const [dr, dc] of directions) {
+                                let nr = r + dr;
+                                let nc = c + dc;
+                                while (isValidPos(nr, nc)) {
+                                    const target = currentBoard[nr][nc];
+                                    if (!target) { addMove(nr, nc); }
+                                    else { if (target.color !== piece.color) addMove(nr, nc); break; }
+                                    nr += dr; nc += dc;
+                                }
+                            }
+                        }
+                        return moves;
+                    };
+
+                    const getLegalMoves = (pos, piece, currentBoard, prevMove) => {
+                        const pseudoMoves = getPseudoLegalMoves(pos, piece, currentBoard, prevMove);
+                        const legalMoves = [];
+                        for (const move of pseudoMoves) {
+                            const nextBoard = copyBoard(currentBoard);
+                            nextBoard[move.to.r][move.to.c] = { ...piece, hasMoved: true };
+                            nextBoard[move.from.r][move.from.c] = null;
+                            if (move.isEnPassant) nextBoard[move.from.r][move.to.c] = null;
+                            
+                            let kingPos = null;
+                            for (let r = 0; r < 8; r++) {
+                                for (let c = 0; c < 8; c++) {
+                                    const p = nextBoard[r][c];
+                                    if (p && p.type === 'k' && p.color === piece.color) { kingPos = { r, c }; break; }
+                                }
+                            }
+                            if (kingPos) {
+                                if (!isSquareAttacked(kingPos.r, kingPos.c, nextBoard, piece.color === 'w' ? 'b' : 'w')) legalMoves.push(move);
+                            }
+                        }
+                        return legalMoves;
+                    };
+
+                    const checkGameState = (currentBoard, nextTurn, prevMove) => {
+                        let inCheck = false;
+                        let kingPos = null;
+                        for (let r = 0; r < 8; r++) {
+                            for (let c = 0; c < 8; c++) {
+                                const p = currentBoard[r][c];
+                                if (p && p.type === 'k' && p.color === nextTurn) { kingPos = { r, c }; break; }
+                            }
+                        }
+                        if (kingPos) inCheck = isSquareAttacked(kingPos.r, kingPos.c, currentBoard, nextTurn === 'w' ? 'b' : 'w');
+
+                        let hasLegalMove = false;
+                        for (let r = 0; r < 8; r++) {
+                            for (let c = 0; c < 8; c++) {
+                                const p = currentBoard[r][c];
+                                if (p && p.color === nextTurn) {
+                                    if (getLegalMoves({ r, c }, p, currentBoard, prevMove).length > 0) { hasLegalMove = true; break; }
+                                }
+                            }
+                            if (hasLegalMove) break;
+                        }
+
+                        if (inCheck && !hasLegalMove) setGameState('checkmate');
+                        else if (!inCheck && !hasLegalMove) setGameState('stalemate');
+                        else if (inCheck) setGameState('check');
+                        else setGameState('playing');
+                    };
+
+                    const handleSquareClick = (r, c) => {
+                        if (gameState === 'checkmate' || gameState === 'stalemate') return;
+                        const clickedPiece = board[r][c];
+                        const isSameColor = clickedPiece && clickedPiece.color === turn;
+
+                        if (isSameColor) {
+                            setSelectedPos({ r, c });
+                            setPossibleMoves(getLegalMoves({ r, c }, clickedPiece, board, lastMove));
+                            return;
+                        }
+                        if (selectedPos) {
+                            const move = possibleMoves.find(m => m.to.r === r && m.to.c === c);
+                            if (move) executeMove(move);
+                            else { setSelectedPos(null); setPossibleMoves([]); }
+                        }
+                    };
+
+                    const executeMove = (move) => {
+                        const newBoard = copyBoard(board);
+                        const piece = newBoard[move.from.r][move.from.c];
+                        const captured = newBoard[move.to.r][move.to.c];
+                        if (captured) setCapturedPieces(prev => ({ ...prev, [piece.color]: [...prev[piece.color], captured.type] }));
+                        else if (move.isEnPassant) setCapturedPieces(prev => ({ ...prev, [piece.color]: [...prev[piece.color], 'p'] }));
+
+                        newBoard[move.to.r][move.to.c] = { ...piece, hasMoved: true };
+                        newBoard[move.from.r][move.from.c] = null;
+                        if (move.isEnPassant) newBoard[move.from.r][move.to.c] = null;
+                        if (move.isCastling) {
+                            const row = move.to.r;
+                            if (move.isCastling === 'kingside') {
+                                newBoard[row][5] = { ...newBoard[row][7], hasMoved: true }; newBoard[row][7] = null;
+                            } else {
+                                newBoard[row][3] = { ...newBoard[row][0], hasMoved: true }; newBoard[row][0] = null;
+                            }
+                        }
+                        if (piece.type === 'p' && (move.to.r === 0 || move.to.r === 7)) newBoard[move.to.r][move.to.c].type = 'q';
+
+                        setBoard(newBoard);
+                        setLastMove(move);
+                        const nextTurn = turn === 'w' ? 'b' : 'w';
+                        setTurn(nextTurn);
+                        setSelectedPos(null);
+                        setPossibleMoves([]);
+                        checkGameState(newBoard, nextTurn, move);
+                    };
+
+                    const resetGame = () => {
+                        setBoard(JSON.parse(JSON.stringify(INITIAL_BOARD_SETUP)));
+                        setTurn('w');
+                        setSelectedPos(null);
+                        setPossibleMoves([]);
+                        setLastMove(null);
+                        setGameState('playing');
+                        setCapturedPieces({ w: [], b: [] });
+                    };
+
+                    const getSquareColor = (r, c) => {
+                        return (r + c) % 2 === 0 ? 'bg-[#F0D9B5]' : 'bg-[#B58863]';
+                    };
+
+                    // --- 渲染 ---
+                    return (
+                        <div className="flex flex-col items-center w-full p-4 font-sans select-none rounded-xl" style={{ backgroundColor: 'rgba(20, 20, 20, 0.5)', border: '1px solid #333' }}>
+                            
+                            {/* 標題區 */}
+                            <div className="w-full max-w-lg mb-4 flex items-center justify-between">
+                                <h1 className="text-2xl font-bold text-white flex items-center gap-2">
+                                    <Trophy className="w-6 h-6 text-[#e5c07b]" />
+                                    西洋棋大師
+                                </h1>
+                                <button onClick={resetGame} className="p-2 bg-[#333] rounded-full shadow-sm hover:bg-[#444] hover:text-[#e5c07b] transition-all active:scale-95 text-gray-300 border border-gray-600" title="重新開始">
+                                    <RotateCcw size={20} />
+                                </button>
+                            </div>
+
+                            {/* 狀態卡片 */}
+                            <div className={`w-full max-w-lg mb-6 p-4 rounded-xl shadow-sm border flex items-center justify-between transition-colors duration-300
+                                ${gameState === 'checkmate' ? 'bg-red-900/50 border-red-700' : 'bg-[#1a1a1a] border-[#333]'}`}>
+                                <div className="flex items-center gap-3">
+                                    <div className={`w-3 h-3 rounded-full ${turn === 'w' ? 'bg-gray-200 border border-gray-400' : 'bg-black border border-gray-600'}`}></div>
+                                    <span className="font-medium text-lg text-gray-200">
+                                        {gameState === 'checkmate' ? (turn === 'w' ? '黑方獲勝！' : '白方獲勝！') : 
+                                        gameState === 'stalemate' ? '逼和 (Stalemate)' :
+                                        turn === 'w' ? '輪到白方' : '輪到黑方'}
+                                    </span>
+                                </div>
+                                {(gameState === 'check' || gameState === 'checkmate') && (
+                                    <div className="flex items-center gap-1 text-red-400 font-bold px-3 py-1 bg-red-900/30 rounded-lg border border-red-800">
+                                        <AlertTriangle size={18} />
+                                        {gameState === 'check' ? '將軍!' : '將死!'}
+                                    </div>
+                                )}
+                            </div>
+
+                            {/* 黑方吃掉的棋子 */}
+                            <div className="w-full max-w-lg h-8 flex gap-1 mb-2 px-2 overflow-hidden items-end">
+                                {capturedPieces.b.map((p, i) => (
+                                    <div key={i} className="w-6 h-8 text-white/70 text-2xl flex items-center justify-center font-serif">
+                                        {PIECE_UNICODE['w'][p] + '\uFE0E'}
+                                    </div>
+                                ))}
+                            </div>
+
+                            {/* 棋盤主體 */}
+                            <div className="relative shadow-2xl rounded overflow-hidden border-4 border-[#333]">
+                                <div className="grid grid-cols-8 grid-rows-8 w-[min(85vw,480px)] h-[min(85vw,480px)]">
+                                    {board.map((row, r) => (
+                                        row.map((piece, c) => {
+                                            const isSelected = selectedPos?.r === r && selectedPos?.c === c;
+                                            const move = possibleMoves.find(m => m.to.r === r && m.to.c === c);
+                                            const isMoveOption = !!move;
+                                            const isCaptureTarget = isMoveOption && (piece || move.isEnPassant);
+                                            const isKingInCheck = gameState !== 'playing' && gameState !== 'stalemate' && piece?.type === 'k' && piece?.color === turn;
+
+                                            return (
+                                                <div key={`${r}-${c}`} onClick={() => handleSquareClick(r, c)}
+                                                    className={`
+                                                        relative flex items-center justify-center cursor-pointer
+                                                        ${getSquareColor(r, c)}
+                                                        ${isKingInCheck ? '!bg-[#FF6961]' : ''}
+                                                        ${isSelected ? 'shadow-[inset_0_0_0_4px_#4CAF50] after:content-[""] after:absolute after:inset-0 after:bg-[#4CAF50]/30' : ''}
+                                                    `}
+                                                >
+                                                    {/* 坐標 */}
+                                                    {c === 0 && <span className={`absolute top-0.5 left-0.5 text-[10px] font-bold ${getSquareColor(r, c).includes('F0D9B5') ? 'text-[#B58863]' : 'text-[#F0D9B5]'}`}>{8 - r}</span>}
+                                                    {r === 7 && <span className={`absolute bottom-0 right-1 text-[10px] font-bold ${getSquareColor(r, c).includes('F0D9B5') ? 'text-[#B58863]' : 'text-[#F0D9B5]'}`}>{String.fromCharCode(97 + c)}</span>}
+
+                                                    {/* 移動提示 */}
+                                                    {isMoveOption && !isCaptureTarget && (
+                                                        <div className="absolute w-[30%] h-[30%] bg-[#4CAF50]/80 rounded-full pointer-events-none z-10"></div>
+                                                    )}
+                                                    {isCaptureTarget && (
+                                                        <div className="absolute w-[90%] h-[90%] border-[4px] border-[#ef4444] rounded-lg pointer-events-none z-10"></div>
+                                                    )}
+
+                                                    {/* 棋子 */}
+                                                    {piece && <div className="w-full h-full z-20 relative"><ChessPieceIcon type={piece.type} color={piece.color} /></div>}
+                                                </div>
+                                            );
+                                        })
+                                    ))}
+                                </div>
+                            </div>
+
+                            {/* 白方吃掉的棋子 */}
+                            <div className="w-full max-w-lg h-8 flex gap-1 mt-2 px-2 overflow-hidden items-start">
+                                {capturedPieces.w.map((p, i) => (
+                                    <div key={i} className="w-6 h-8 text-white/70 text-2xl flex items-center justify-center font-serif">
+                                        {PIECE_UNICODE['b'][p] + '\uFE0E'}
+                                    </div>
+                                ))}
+                            </div>
+
+                            <div className="mt-4 flex flex-col items-center gap-1 text-xs text-gray-500 font-sans">
+                                <p>點擊棋子進行移動 • 支援過路兵 • 自動升變為皇后</p>
+                                <p className="text-[#e5c07b]">Designed by Wang Meng-Fan</p>
+                            </div>
+                        </div>
+                    );
+                }
+
+                // --- 4. 渲染到 DOM ---
+                const root = ReactDOM.createRoot(document.getElementById('chess-root'));
+                root.render(<ChessGame />);
+            </script>
         </section>
 
         <section id="contact" style="border-bottom: none;">
@@ -637,7 +960,7 @@
     <footer class="contact-footer">
         <p>Email: s111316020@stu.ntue.edu.tw</p>
         <p style="color: var(--text-secondary); font-size: 0.8rem; margin-top: 10px;">
-            &copy; 2025 Wang Meng-Fan. All Rights Reserved. <br>
+            © 2025 Wang Meng-Fan. All Rights Reserved. <br>
             <time datetime="2025-12-13">最後更新日期：2025年12月13日</time>
         </p>
     </footer>
@@ -652,7 +975,7 @@
             if (menuToggle && navLinks) {
                 menuToggle.addEventListener('click', () => {
                     navLinks.classList.toggle('active');
-                    // 切換圖示 (可選)
+                    // 切換圖示
                     menuToggle.textContent = navLinks.classList.contains('active') ? '✕' : '☰';
                 });
 
@@ -666,7 +989,6 @@
             }
 
             // 2. 滾動視差與淡入動畫 (Intersection Observer)
-            // 這是讓網站看起來像現代遊戲官網的關鍵技術
             const observerOptions = {
                 threshold: 0.1, // 當元素出現 10% 時觸發
                 rootMargin: "0px 0px -50px 0px"
@@ -676,7 +998,6 @@
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
                         entry.target.classList.add('is-visible');
-                        // 觀察過後就不再重複觸發，若想重複觸發可移除下行
                         observer.unobserve(entry.target); 
                     }
                 });
@@ -685,7 +1006,7 @@
             const fadeElements = document.querySelectorAll('.fade-in-section');
             fadeElements.forEach(el => observer.observe(el));
 
-            // 3. 圖片右鍵保護 (保留原網站邏輯)
+            // 3. 圖片右鍵保護
             const protectImages = document.querySelectorAll('img');
             protectImages.forEach(img => {
                 img.addEventListener('contextmenu', (e) => e.preventDefault());
